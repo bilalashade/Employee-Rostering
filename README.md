@@ -1,6 +1,6 @@
 # Employee-Rostering. Covid ward is added depending on the companny you want to create on the project
 
-#To Building the project:
+# To Building the project:
 
 Build the project with maven in the project’s root directory:
 
@@ -8,7 +8,7 @@ mvn clean install -DskipTests -DskipITs
 
 
 
-After building the project, run the application with:
+# After building the project, run the application with:
 
 java -jar optaweb-employee-rostering-standalone/target/optaweb-employee-rostering-standalone-*-exec.jar.
 
