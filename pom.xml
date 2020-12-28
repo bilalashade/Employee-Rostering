@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.kie</groupId>
+    <artifactId>kie-parent</artifactId>
+    <version>7.39.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.optaweb.employeerostering</groupId>
+  <artifactId>optaweb-employee-rostering</artifactId>
+  <packaging>pom</packaging>
+
+  <name>OptaWeb Employee Rostering as a Service Parent</name>
+  <description>
+    OptaWeb Employee Rostering as a Service with OptaPlanner on OpenShift 4.
+  </description>
+  <url>https://www.optaplanner.org</url>
+  <inceptionYear>2017</inceptionYear>
+
+  <repositories>
+    <!-- Bootstrap repository to locate the parent pom when the parent pom has not been build locally. -->
+    <repository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <properties>
+    <checkstyle.logViolationsToConsole>true</checkstyle.logViolationsToConsole>
+    <checkstyle.header.template><![CDATA[
+^\/\*$\n^
+\* Copyright \d\d\d\d Red Hat, Inc\. and\/or its affiliates\.$\n^
+\*$\n^
+\* Licensed under the Apache License, Version 2\.0 \(the &quot;License&quot;\);$\n^
+\* you may not use this file except in compliance with the License\.$\n^
+\* You may obtain a copy of the License at$\n^
+\*$\n^
+\*     http:\/\/www\.apache\.org\/licenses\/LICENSE-2\.0$\n^
+\*$\n^
+\* Unless required by applicable law or agreed to in writing, software$\n^
+\* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,$\n^
+\* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied\.$\n^
+\* See the License for the specific language governing permissions and$\n^
+\* limitations under the License\.$\n^
+\*\/$
+]]>
+    </checkstyle.header.template>
+    <!-- Define JaCoCo agent argLine property to avoid Surefire failure when JaCoCo is not enabled. -->
+    <jacoco.agent.argLine/>
+    <sonar.projectKey>optaweb-employee-rostering</sonar.projectKey>
+    <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+    <version.org.mockito>2.12.0</version.org.mockito>
+    <version.org.postgresql>42.2.6</version.org.postgresql>
+  </properties>
+
+  <modules>
+    <module>optaweb-employee-rostering-frontend</module>
+    <module>optaweb-employee-rostering-backend</module>
+    <module>optaweb-employee-rostering-benchmark</module>
+    <module>optaweb-employee-rostering-docs</module>
+    <module>optaweb-employee-rostering-distribution</module>
+    <module>optaweb-employee-rostering-standalone</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Internal modules -->
+      <dependency>
+        <groupId>org.optaweb.employeerostering</groupId>
+        <artifactId>optaweb-employee-rostering-frontend</artifactId>
+        <type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.optaweb.employeerostering</groupId>
+        <artifactId>optaweb-employee-rostering-backend</artifactId>
+        <type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.optaweb.employeerostering</groupId>
+        <artifactId>optaweb-employee-rostering-backend</artifactId>
+        <classifier>exec</classifier>
+        <type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.optaweb.employeerostering</groupId>
+        <artifactId>optaweb-employee-rostering-docs</artifactId>
+        <type>zip</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.optaweb.employeerostering</groupId>
+        <artifactId>optaweb-employee-rostering-standalone</artifactId>
+        <classifier>exec</classifier>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- BOMs -->
+      <dependency>
+        <groupId>org.optaplanner</groupId>
+        <artifactId>optaplanner-bom</artifactId>
+        <type>pom</type>
+        <version>${version.org.kie}</version>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.org.springframework.boot}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${version.org.springframework.boot}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <!-- Skip Sonar plugin execution if SONARCLOUD_TOKEN is not set. -->
+      <id>skipSonar</id>
+      <activation>
+        <property>
+          <name>!env.SONARCLOUD_TOKEN</name>
+        </property>
+      </activation>
+      <properties>
+        <sonar.skip>true</sonar.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>run-code-coverage</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <!-- Append jacoco.agent.argLine property populated by JaCoCo's prepare-agent goal. -->
+                <argLine>@{jacoco.agent.argLine}</argLine>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jacoco-prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <!-- Append coverage data to a single file defined in the kie-parent -->
+                  <append>true</append>
+                  <destFile>${jacoco.exec.file}</destFile>
+                  <propertyName>jacoco.agent.argLine</propertyName>
+                  <excludes>
+                    <exclude>*Lexer</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

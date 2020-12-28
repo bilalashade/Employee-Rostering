@@ -1,0 +1,50 @@
+---
+indictments: Indictments
+
+missingRequiredSkills: The Employee "{{employee}}" does not have the following skills
+  which are required for the Ward "{{spot}}"
+
+exceededContractMaximumMinutes: The Employee "{{employee}}" have exceeded their maximum
+  {{durationly}} minutes. They have worked {{minutesWorked}} this {{duration}}; they
+  are allowed to work at most {{maxMinutesAllowed}} per {{duration}}.
+
+unavailableEmployee: The Employee "{{employee}}" is unavailable from {{from}} to {{to}}.
+
+conflictingShifts: 'The Employee "{{employee}}" is assigned to a conflicting shift:
+  {{spot}}, {{from}} - {{to}}.'
+
+noBreaks: 'The Employee "{{employee}}" has three shifts in a row.'
+
+employeeDoesNotMatchRotationEmployee: The Shift's Employee "{{employee}}" does not
+  match the Shift's Rotation Employee "{{rotationEmployee}}".
+
+publishedShiftReassigned: The Shift's is published and its Employee change from
+  "{{originalEmployee}}" to "{{employee}}".
+
+unassignedShift: The Shift is unassigned.
+
+undesiredShiftForEmployee: The Employee "{{employee}}" does not want to work from
+  {{from}} to {{to}}.
+
+desiredShiftForEmployee: The Employee "{{employee}}" desires to work from {{from}}
+  to {{to}}.
+
+nonInoculatedEmployeeAssignedToCovidWard: The Employee "{{employee}}" has a {{covidRisk}}
+  COVID-19 risk and is assigned to a COVID-19 Ward from {{from}} to {{to}}.
+
+inoculatedEmployeeAssignedOutsideOfCovidWard: The Employee "{{employee}}" is inoculated
+  to COVID-19 and is assigned to a Ward not dedicated to COVID-19 from {{from}} to {{to}}.
+
+maximizeInoculatedEmployeeHours: Maximize the amount of hours Employee "{{employee}}" works
+  as they are inoculated.
+
+migrationBetweenCovidAndNonCovidWards: The Employee "{{employee}}" migrates from
+  the COVID-19 dedicated ward {{covidWard}} to a non-COVID-19 dedicated ward {{nonCovidWard}}.
+
+nonCovidShiftSoonAfterCovidShift: The Employee "{{employee}}" migrates from
+  the COVID-19 dedicated ward {{covidWard}} to a non-COVID-19 dedicated ward {{nonCovidWard}} before
+  8 hours have passed.
+
+totalIndictment: 'Shift Indictment Score: {{score}}'
+penalty: 'Penalty: {{score}}'
+reward: 'Reward: {{score}}'

@@ -1,0 +1,6 @@
+12-09 15:02:58 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "SHIFT_REQUIRED_SKILL_SET"; SQL statement:
+delete from shift_required_skill_set where (shift_id) in (select id from shift) [50200-173]
+12-09 16:20:01 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLException: Timeout trying to lock table "SHIFT_REQUIRED_SKILL_SET"; SQL statement:
+delete from shift_required_skill_set where (shift_id) in (select id from shift) [50200-173]

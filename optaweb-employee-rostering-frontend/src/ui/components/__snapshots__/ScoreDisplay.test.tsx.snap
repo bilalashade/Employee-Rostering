@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScoreDisplay component should renderCorrectly 1`] = `
+<span>
+  <Component
+    isReadOnly={true}
+  >
+    Trans(i18nKey=hardScore, {"hardScore":-10})
+  </Component>
+  <Component
+    isReadOnly={true}
+  >
+    Trans(i18nKey=mediumScore, {"mediumScore":-5})
+  </Component>
+  <Component
+    isReadOnly={true}
+  >
+    Trans(i18nKey=softScore, {"softScore":20})
+  </Component>
+  <Popover
+    appendTo={[Function]}
+    aria-label=""
+    bodyContent={
+      <ConstraintMatches
+        indictmentSummary={
+          Object {
+            "constraintToCountMap": Object {},
+            "constraintToScoreImpactMap": Object {},
+          }
+        }
+        isSolving={true}
+        score={
+          Object {
+            "hardScore": -10,
+            "mediumScore": -5,
+            "softScore": 20,
+          }
+        }
+      />
+    }
+    boundary="viewport"
+    className=""
+    closeBtnAriaLabel="Close"
+    distance={25}
+    enableFlip={true}
+    flipBehavior={
+      Array [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top",
+        "right",
+        "bottom",
+      ]
+    }
+    footerContent={null}
+    headerContent="Constraint Matches"
+    hideOnOutsideClick={true}
+    isVisible={false}
+    maxWidth="800px"
+    onHidden={[Function]}
+    onHide={[Function]}
+    onMount={[Function]}
+    onShow={[Function]}
+    onShown={[Function]}
+    position="top"
+    shouldClose={[Function]}
+    tippyProps={Object {}}
+    zIndex={9999}
+  >
+    <Component
+      onClick={[Function]}
+      variant="plain"
+    >
+      <HelpIcon
+        color="currentColor"
+        noVerticalAlign={false}
+        size="sm"
+        title={null}
+      />
+    </Component>
+  </Popover>
+  Stand by while resolving hard constraint violations...
+</span>
+`;
