@@ -35,4 +35,4 @@ Frontend
 Run npm install and then npm start in the optaweb-employee-rostering-frontend directory.
 
 
-# See a the video demo https://www.youtube.com/watch?v=sOWC4qrXxFk. on how the application works
+# See video demo https://www.youtube.com/watch?v=sOWC4qrXxFk. on how the application works
